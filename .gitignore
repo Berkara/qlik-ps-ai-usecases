@@ -1,0 +1,10 @@
+# Only deploy the webpage - exclude everything else
+Transcripts/
+Branding and Templates/
+Files/
+Powerpoint/
+generate_pptx.py
+AI_Use_Cases_PS.pptx
+.DS_Store
+*.pyc
+__pycache__/

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Use Cases for Qlik Professional Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --qlik-green: #009845;
+  --qlik-dark-blue: #19416C;
+  --qlik-teal: #006580;
+  --qlik-cyan: #10CFC9;
+  --qlik-purple: #93579C;
+  --qlik-grey: #545659;
+  --qlik-light-grey: #F6F7F8;
+  --qlik-accent-grey: #A9B3B6;
+  --qlik-red: #C0392B;
+  --white: #FFFFFF;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+  --radius: 12px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--qlik-grey);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--qlik-light-grey); }
+::-webkit-scrollbar-thumb { background: var(--qlik-accent-grey); border-radius: 4px; }
+
+/* ── Navigation ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0 2rem;
+  transition: var(--transition);
+}
+nav.scrolled { box-shadow: var(--shadow); }
+
+.nav-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+
+.nav-brand {
+  font-size: 1.5rem; font-weight: 800;
+  color: var(--qlik-green); letter-spacing: -0.5px;
+}
+.nav-brand span { color: var(--qlik-dark-blue); font-weight: 400; font-size: 0.9rem; margin-left: 0.5rem; }
+
+.nav-links { display: flex; gap: 0.25rem; }
+.nav-links a {
+  text-decoration: none; color: var(--qlik-grey);
+  font-size: 0.85rem; font-weight: 500;
+  padding: 0.5rem 1rem; border-radius: 8px;
+  transition: var(--transition);
+}
+.nav-links a:hover { background: var(--qlik-light-grey); color: var(--qlik-dark-blue); }
+.nav-links a.active { background: var(--qlik-dark-blue); color: var(--white); }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--qlik-dark-blue) 0%, var(--qlik-teal) 50%, var(--qlik-cyan) 100%);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 6rem 2rem 4rem;
+  position: relative; overflow: hidden;
+}
+
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(0,152,69,0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(147,87,156,0.15) 0%, transparent 50%);
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800; color: var(--white);
+  line-height: 1.1; margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.hero .subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(255,255,255,0.85);
+  font-weight: 300; margin-bottom: 3rem;
+  max-width: 700px; margin-left: auto; margin-right: auto;
+}
+
+.hero-stats {
+  display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+}
+.stat-number {
+  font-size: 3.5rem; font-weight: 800; color: var(--white);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.85rem; color: rgba(255,255,255,0.7);
+  font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+  margin-top: 0.25rem;
+}
+
+.hero-scroll {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,0.5); font-size: 0.8rem;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── Section Base ── */
+section {
+  padding: 5rem 2rem;
+  max-width: 1400px; margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2rem; font-weight: 700; color: var(--qlik-dark-blue);
+  margin-bottom: 0.5rem; letter-spacing: -0.5px;
+}
+.section-subtitle {
+  font-size: 1rem; color: var(--qlik-accent-grey);
+  margin-bottom: 3rem; max-width: 600px;
+}
+
+/* ── Framework Overview ── */
+#framework { background: var(--qlik-light-grey); max-width: none; }
+#framework .inner { max-width: 1400px; margin: 0 auto; }
+
+.framework-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.framework-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border-top: 4px solid transparent;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative; overflow: hidden;
+}
+.framework-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.framework-card.crawl { border-top-color: var(--qlik-green); }
+.framework-card.walk { border-top-color: var(--qlik-teal); }
+.framework-card.run { border-top-color: var(--qlik-purple); }
+
+.framework-card .tier-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+.crawl .tier-badge { background: rgba(0,152,69,0.1); color: var(--qlik-green); }
+.walk .tier-badge { background: rgba(0,101,128,0.1); color: var(--qlik-teal); }
+.run .tier-badge { background: rgba(147,87,156,0.1); color: var(--qlik-purple); }
+
+.framework-card h3 { font-size: 1.3rem; color: var(--qlik-dark-blue); margin-bottom: 0.5rem; }
+.framework-card .count { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.crawl .count { color: var(--qlik-green); }
+.walk .count { color: var(--qlik-teal); }
+.run .count { color: var(--qlik-purple); }
+.framework-card p { font-size: 0.9rem; color: var(--qlik-grey); }
+
+/* ── Quote Banner ── */
+.quote-banner {
+  background: linear-gradient(135deg, var(--qlik-dark-blue), var(--qlik-teal));
+  color: var(--white); padding: 4rem 2rem;
+  text-align: center; max-width: none;
+}
+.quote-banner blockquote {
+  max-width: 800px; margin: 0 auto;
+  font-size: 1.4rem; font-weight: 300;
+  line-height: 1.6; font-style: italic;
+}
+.quote-banner cite {
+  display: block; margin-top: 1rem;
+  font-size: 0.9rem; font-style: normal;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ── Use Case Explorer ── */
+.filter-bar {
+  display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;
+  align-items: center;
+}
+.filter-btn {
+  padding: 0.5rem 1.25rem; border: 2px solid var(--qlik-light-grey);
+  border-radius: 25px; background: var(--white);
+  font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+  color: var(--qlik-grey);
+}
+.filter-btn:hover { border-color: var(--qlik-dark-blue); color: var(--qlik-dark-blue); }
+.filter-btn.active { background: var(--qlik-dark-blue); color: var(--white); border-color: var(--qlik-dark-blue); }
+.filter-btn.active.crawl-filter { background: var(--qlik-green); border-color: var(--qlik-green); }
+.filter-btn.active.walk-filter { background: var(--qlik-teal); border-color: var(--qlik-teal); }
+.filter-btn.active.run-filter { background: var(--qlik-purple); border-color: var(--qlik-purple); }
+
+.search-input {
+  padding: 0.5rem 1rem; border: 2px solid var(--qlik-light-grey);
+  border-radius: 25px; font-family: 'Inter', sans-serif;
+  font-size: 0.85rem; outline: none; width: 250px;
+  transition: var(--transition);
+}
+.search-input:focus { border-color: var(--qlik-dark-blue); }
+
+.use-case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.25rem;
+}
+
+.use-case-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+  border-left: 4px solid transparent;
+}
+.use-case-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.use-case-card.crawl { border-left-color: var(--qlik-green); }
+.use-case-card.walk { border-left-color: var(--qlik-teal); }
+.use-case-card.run { border-left-color: var(--qlik-purple); }
+
+.use-case-card.hidden {
+  display: none;
+}
+
+.card-header {
+  padding: 1.25rem 1.5rem 0.75rem;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 1rem;
+}
+.card-header h4 { font-size: 1rem; color: var(--qlik-dark-blue); font-weight: 600; flex: 1; }
+
+.card-id {
+  font-size: 0.7rem; font-weight: 700;
+  padding: 0.15rem 0.5rem; border-radius: 4px;
+  white-space: nowrap;
+}
+.crawl .card-id { background: rgba(0,152,69,0.1); color: var(--qlik-green); }
+.walk .card-id { background: rgba(0,101,128,0.1); color: var(--qlik-teal); }
+.run .card-id { background: rgba(147,87,156,0.1); color: var(--qlik-purple); }
+
+.card-body {
+  padding: 0 1.5rem 1.25rem;
+}
+.card-body p { font-size: 0.85rem; color: var(--qlik-grey); line-height: 1.5; }
+
+.card-meta {
+  padding: 0.75rem 1.5rem;
+  background: var(--qlik-light-grey);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.75rem; color: var(--qlik-accent-grey);
+}
+.card-sources span {
+  background: var(--white); padding: 0.15rem 0.5rem;
+  border-radius: 4px; margin-right: 0.25rem; font-weight: 500;
+}
+
+.card-expand {
+  display: none;
+  padding: 1.25rem 1.5rem;
+  background: var(--qlik-light-grey);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  font-size: 0.85rem;
+  animation: slideDown 0.3s ease;
+}
+.card-expand.show { display: block; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.card-expand h5 { color: var(--qlik-dark-blue); margin-bottom: 0.5rem; font-size: 0.85rem; }
+.card-expand ul { padding-left: 1.25rem; margin-bottom: 0.75rem; }
+.card-expand li { margin-bottom: 0.25rem; }
+
+.expand-indicator {
+  font-size: 0.75rem; color: var(--qlik-accent-grey);
+  padding: 0.5rem 1.5rem; text-align: right;
+  transition: var(--transition);
+}
+
+/* ── HSBC Success Story ── */
+#hsbc {
+  background: linear-gradient(135deg, #f8fdf9 0%, #f0f8ff 100%);
+  max-width: none; padding: 5rem 2rem;
+}
+#hsbc .inner { max-width: 1000px; margin: 0 auto; }
+
+.success-story {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  overflow: hidden;
+  border-left: 6px solid var(--qlik-green);
+}
+.success-header {
+  background: linear-gradient(135deg, var(--qlik-dark-blue), var(--qlik-teal));
+  padding: 2rem 2.5rem; color: var(--white);
+}
+.success-header .badge {
+  background: var(--qlik-green);
+  padding: 0.25rem 1rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  display: inline-block; margin-bottom: 1rem;
+}
+.success-header h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.success-header p { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+
+.success-body { padding: 2.5rem; }
+.success-body .quote-block {
+  background: var(--qlik-light-grey);
+  border-left: 4px solid var(--qlik-green);
+  padding: 1.5rem; border-radius: 0 8px 8px 0;
+  margin-bottom: 2rem;
+  font-size: 1.2rem; font-weight: 500;
+  color: var(--qlik-dark-blue); font-style: italic;
+}
+
+.success-metrics {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-bottom: 2rem;
+}
+.metric {
+  text-align: center; padding: 1.5rem;
+  background: var(--qlik-light-grey); border-radius: 8px;
+}
+.metric .value { font-size: 2rem; font-weight: 800; color: var(--qlik-green); }
+.metric .label { font-size: 0.8rem; color: var(--qlik-accent-grey); margin-top: 0.25rem; }
+
+.success-timeline {
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+.timeline-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 0.75rem; border-radius: 8px;
+  transition: var(--transition);
+}
+.timeline-item:hover { background: var(--qlik-light-grey); }
+.timeline-date {
+  font-size: 0.75rem; font-weight: 700; color: var(--qlik-teal);
+  white-space: nowrap; min-width: 90px;
+}
+.timeline-text { font-size: 0.85rem; }
+
+/* ── Pyramid Section ── */
+#pyramid { text-align: center; }
+
+.pyramid-visual {
+  max-width: 700px; margin: 0 auto 2rem;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.pyramid-layer {
+  padding: 1.25rem 2rem; color: var(--white);
+  font-weight: 600; font-size: 0.95rem;
+  border-radius: 8px; text-align: center;
+  transition: var(--transition);
+  cursor: pointer; position: relative;
+}
+.pyramid-layer:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-hover);
+}
+.pyramid-layer .layer-detail {
+  display: none; font-size: 0.8rem; font-weight: 400;
+  margin-top: 0.5rem; opacity: 0.9;
+}
+.pyramid-layer.active .layer-detail { display: block; }
+
+.pyramid-quote {
+  max-width: 500px; margin: 0 auto;
+  font-style: italic; color: var(--qlik-dark-blue);
+  font-size: 1rem;
+  padding: 1.5rem;
+  background: var(--qlik-light-grey);
+  border-radius: 8px;
+}
+
+/* ── Roadmap ── */
+#roadmap { background: var(--qlik-light-grey); max-width: none; }
+#roadmap .inner { max-width: 1400px; margin: 0 auto; }
+
+.roadmap-timeline {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; position: relative;
+}
+.roadmap-timeline::before {
+  content: ''; position: absolute;
+  top: 30px; left: 5%; right: 5%;
+  height: 4px; background: var(--qlik-accent-grey);
+  border-radius: 2px;
+  z-index: 0;
+}
+
+.phase-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative; z-index: 1;
+  transition: var(--transition);
+}
+.phase-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+.phase-dot {
+  width: 20px; height: 20px;
+  border-radius: 50%; margin: 20px auto;
+  position: relative;
+}
+.phase-dot::after {
+  content: ''; position: absolute;
+  top: -4px; left: -4px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid;
+  opacity: 0.3;
+}
+.phase-1 .phase-dot { background: var(--qlik-green); }
+.phase-1 .phase-dot::after { border-color: var(--qlik-green); }
+.phase-2 .phase-dot { background: var(--qlik-teal); }
+.phase-2 .phase-dot::after { border-color: var(--qlik-teal); }
+.phase-3 .phase-dot { background: var(--qlik-purple); }
+.phase-3 .phase-dot::after { border-color: var(--qlik-purple); }
+
+.phase-header {
+  padding: 1.25rem 1.5rem;
+  color: var(--white); text-align: center;
+}
+.phase-1 .phase-header { background: var(--qlik-green); }
+.phase-2 .phase-header { background: var(--qlik-teal); }
+.phase-3 .phase-header { background: var(--qlik-purple); }
+
+.phase-header h4 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+.phase-header .days { font-size: 0.8rem; opacity: 0.8; }
+
+.phase-items { padding: 1.5rem; }
+.phase-items li {
+  list-style: none; padding: 0.5rem 0;
+  border-bottom: 1px solid var(--qlik-light-grey);
+  font-size: 0.9rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.phase-items li:last-child { border-bottom: none; }
+.phase-items li::before {
+  content: ''; width: 6px; height: 6px;
+  border-radius: 50%; flex-shrink: 0;
+}
+.phase-1 .phase-items li::before { background: var(--qlik-green); }
+.phase-2 .phase-items li::before { background: var(--qlik-teal); }
+.phase-3 .phase-items li::before { background: var(--qlik-purple); }
+
+/* ── Interview Insights ── */
+.interview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.25rem;
+}
+
+.interview-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  transition: var(--transition);
+  border-top: 3px solid var(--qlik-dark-blue);
+}
+.interview-card:hover { box-shadow: var(--shadow-hover); }
+.interview-card h4 { color: var(--qlik-dark-blue); margin-bottom: 0.5rem; font-size: 1rem; }
+.interview-card .role { font-size: 0.8rem; color: var(--qlik-teal); font-weight: 600; margin-bottom: 0.75rem; }
+.interview-card .key-quote {
+  font-style: italic; font-size: 0.85rem;
+  color: var(--qlik-grey); padding: 0.75rem;
+  background: var(--qlik-light-grey); border-radius: 6px;
+  margin-bottom: 0.75rem; border-left: 3px solid var(--qlik-cyan);
+}
+.interview-card .use-cases-mentioned {
+  display: flex; flex-wrap: wrap; gap: 0.3rem;
+}
+.interview-card .uc-tag {
+  font-size: 0.7rem; padding: 0.15rem 0.5rem;
+  border-radius: 4px; font-weight: 600;
+}
+.uc-tag.crawl { background: rgba(0,152,69,0.1); color: var(--qlik-green); }
+.uc-tag.walk { background: rgba(0,101,128,0.1); color: var(--qlik-teal); }
+.uc-tag.run { background: rgba(147,87,156,0.1); color: var(--qlik-purple); }
+
+/* ── Footer ── */
+footer {
+  background: var(--qlik-dark-blue);
+  color: rgba(255,255,255,0.7);
+  text-align: center; padding: 3rem 2rem;
+}
+footer .brand { color: var(--qlik-green); font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem; }
+footer p { font-size: 0.85rem; }
+
+/* ── Animations ── */
+.fade-up {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-stats { gap: 1.5rem; }
+  .stat-number { font-size: 2.5rem; }
+  .use-case-grid { grid-template-columns: 1fr; }
+  .success-metrics { grid-template-columns: 1fr; }
+  .framework-cards { grid-template-columns: 1fr; }
+  section { padding: 3rem 1rem; }
+  .filter-bar { gap: 0.3rem; }
+  .search-input { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand">Qlik <span>Professional Services</span></div>
+    <div class="nav-links">
+      <a href="#framework">Framework</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#hsbc">Success Story</a>
+      <a href="#pyramid">Data Foundation</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#interviews">Interviews</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <h1>AI-Powered<br>Professional Services</h1>
+    <p class="subtitle">From fragmented exploration to enterprise AI enablement. A strategic blueprint for accelerating delivery, empowering consultants, and automating operational workflows.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number" data-target="18">0</div>
+        <div class="stat-label">Use Cases</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" data-target="6">0</div>
+        <div class="stat-label">Interviews</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" data-target="3">0</div>
+        <div class="stat-label">Maturity Levels</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- Quote Banner -->
+<section class="quote-banner">
+  <blockquote>
+    "AI can do <strong>tasks</strong>, it can't do <strong>jobs</strong>. Our strategy is built on the reality that AI supports human judgment &mdash; it does not replace the Delivery Lead or the Consultant."
+  </blockquote>
+  <cite>Guiding Principle</cite>
+</section>
+
+<!-- Framework Overview -->
+<section id="framework">
+  <div class="inner">
+    <div class="section-title fade-up">Crawl / Walk / Run Framework</div>
+    <div class="section-subtitle fade-up">Sequencing value based on complexity, dependencies, and data readiness</div>
+    <div class="framework-cards">
+      <div class="framework-card crawl fade-up" onclick="filterTo('crawl')">
+        <span class="tier-badge">Crawl</span>
+        <div class="count">8</div>
+        <h3>Quick Wins</h3>
+        <p>Independent of data platform. No major system integrations needed. Can start immediately with existing tools and content.</p>
+      </div>
+      <div class="framework-card walk fade-up" onclick="filterTo('walk')">
+        <span class="tier-badge">Walk</span>
+        <div class="count">4</div>
+        <h3>Building Integrations</h3>
+        <p>Basic system integrations required. Moderate complexity. Connects to Salesforce, Outlook, JIRA, and project management tools.</p>
+      </div>
+      <div class="framework-card run fade-up" onclick="filterTo('run')">
+        <span class="tier-badge">Run</span>
+        <div class="count">6</div>
+        <h3>Predictive & Agentic</h3>
+        <p>Heavily dependent on foundational data platform. Predictive risk monitoring, autonomous agents, cross-system intelligence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Case Explorer -->
+<section id="use-cases">
+  <div class="section-title fade-up">Use Case Explorer</div>
+  <div class="section-subtitle fade-up">18 consolidated use cases from 6 interviews across the PS organization</div>
+
+  <div class="filter-bar fade-up">
+    <button class="filter-btn active" data-filter="all" onclick="filterCards('all', this)">All (18)</button>
+    <button class="filter-btn crawl-filter" data-filter="crawl" onclick="filterCards('crawl', this)">Crawl (8)</button>
+    <button class="filter-btn walk-filter" data-filter="walk" onclick="filterCards('walk', this)">Walk (4)</button>
+    <button class="filter-btn run-filter" data-filter="run" onclick="filterCards('run', this)">Run (6)</button>
+    <input type="text" class="search-input" placeholder="Search use cases..." oninput="searchCards(this.value)">
+  </div>
+
+  <div class="use-case-grid" id="use-case-grid">
+    <!-- Cards generated by JS -->
+  </div>
+</section>
+
+<!-- HSBC Success Story -->
+<section id="hsbc">
+  <div class="inner">
+    <div class="section-title fade-up" style="text-align:center;">AI in Action Today</div>
+    <div class="section-subtitle fade-up" style="text-align:center; margin-left:auto; margin-right:auto;">Real-world proof of AI's impact on Professional Services delivery</div>
+
+    <div class="success-story fade-up">
+      <div class="success-header">
+        <span class="badge">Success Story</span>
+        <h3>HSBC: World-Class Sales Effectiveness Dashboard</h3>
+        <p>How Claude AI transformed a customer engagement in under 15 minutes</p>
+      </div>
+      <div class="success-body">
+        <div class="quote-block">
+          "That's exactly what I want. No changes required." &mdash; Cameron Hale, HSBC
+        </div>
+
+        <div class="success-metrics">
+          <div class="metric">
+            <div class="value">&lt;15</div>
+            <div class="label">Minutes to Solution</div>
+          </div>
+          <div class="metric">
+            <div class="value">~20h</div>
+            <div class="label">Hours Saved</div>
+          </div>
+          <div class="metric">
+            <div class="value">0</div>
+            <div class="label">Changes Required</div>
+          </div>
+        </div>
+
+        <h5 style="color:var(--qlik-dark-blue); margin-bottom:1rem;">Timeline of Events</h5>
+        <div class="success-timeline">
+          <div class="timeline-item">
+            <span class="timeline-date">19 Feb 2026</span>
+            <span class="timeline-text">Alun introduced Sunil from Advisory Services to Cameron Hale at HSBC</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">20 Feb 2026</span>
+            <span class="timeline-text">Cameron shared his ask: define "world-class sales effectiveness" for the new CEO (Ida Liu)</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">24 Feb 2026</span>
+            <span class="timeline-text">Internal search yielded nothing. Sunil leveraged Claude AI &mdash; generated a comprehensive CRO dashboard concept with supporting visuals</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">27 Feb 2026</span>
+            <span class="timeline-text">Presented to HSBC. Cameron's feedback: "Exactly what I want in Qlik Sense." Zero modifications needed</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">02 Mar 2026</span>
+            <span class="timeline-text">Follow-up to schedule presentation to Cameron's boss, Jonathan &mdash; land and expand in motion</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Foundation Pyramid -->
+<section id="pyramid">
+  <div class="section-title fade-up">The Non-Negotiable Prerequisite</div>
+  <div class="section-subtitle fade-up" style="margin-left:auto;margin-right:auto;text-align:center;">Each layer enables the one above it. You can't skip levels.</div>
+
+  <div class="pyramid-visual fade-up">
+    <div class="pyramid-layer" style="width:30%; background:var(--qlik-purple);" onclick="toggleLayer(this)">
+      Agentic AI
+      <div class="layer-detail">Autonomous agents handling complex workflows, approvals, and multi-step processes</div>
+    </div>
+    <div class="pyramid-layer" style="width:45%; background:var(--qlik-teal);" onclick="toggleLayer(this)">
+      AI / ML Models
+      <div class="layer-detail">Predictive analytics, forecasting, risk assessment, recommendation engines</div>
+    </div>
+    <div class="pyramid-layer" style="width:60%; background:var(--qlik-dark-blue);" onclick="toggleLayer(this)">
+      BI & Analytics
+      <div class="layer-detail">Dashboards, operational reporting, KPI monitoring across all PS dimensions</div>
+    </div>
+    <div class="pyramid-layer" style="width:75%; background:var(--qlik-cyan); color:var(--qlik-dark-blue);" onclick="toggleLayer(this)">
+      Semantic Layer
+      <div class="layer-detail">Unified definitions, business logic, cross-system data integration</div>
+    </div>
+    <div class="pyramid-layer" style="width:90%; background:var(--qlik-green);" onclick="toggleLayer(this)">
+      Clean Data Foundation
+      <div class="layer-detail">Accurate, governed, consistent data from Salesforce, CRM, project systems</div>
+    </div>
+  </div>
+
+  <div class="pyramid-quote fade-up">
+    "You can't really do AI unless you have a solid, accurate, clean, consistent data platform."
+  </div>
+</section>
+
+<!-- 90-Day Roadmap -->
+<section id="roadmap">
+  <div class="inner">
+    <div class="section-title fade-up">90-Day Implementation Roadmap</div>
+    <div class="section-subtitle fade-up">The Compounding Returns of Immediate Action</div>
+
+    <div class="roadmap-timeline">
+      <div class="phase-card phase-1 fade-up">
+        <div class="phase-dot"></div>
+        <div class="phase-header">
+          <h4>Phase 1: Provision & Quick Wins</h4>
+          <div class="days">Days 1 &ndash; 30</div>
+        </div>
+        <ul class="phase-items">
+          <li>Provision enterprise AI tools (Claude Enterprise)</li>
+          <li>Halt compliance risks from personal tool usage</li>
+          <li>Deploy SOW/proposal generator</li>
+          <li>Launch communication templates</li>
+          <li>Begin meeting transcription capture</li>
+          <li>Customer/Partner 360 research MVP</li>
+        </ul>
+      </div>
+
+      <div class="phase-card phase-2 fade-up">
+        <div class="phase-dot"></div>
+        <div class="phase-header">
+          <h4>Phase 2: Integrate & Scale</h4>
+          <div class="days">Days 31 &ndash; 60</div>
+        </div>
+        <ul class="phase-items">
+          <li>Build RAG knowledge base with past proposals</li>
+          <li>Launch Project Delivery Co-pilot</li>
+          <li>Timecard automation from Outlook</li>
+          <li>AI-assisted technical discovery pilot</li>
+          <li>Documentation gap detection</li>
+          <li>Begin data platform collaboration with Ops</li>
+        </ul>
+      </div>
+
+      <div class="phase-card phase-3 fade-up">
+        <div class="phase-dot"></div>
+        <div class="phase-header">
+          <h4>Phase 3: Predict & Transform</h4>
+          <div class="days">Days 61 &ndash; 90</div>
+        </div>
+        <ul class="phase-items">
+          <li>Forecast generation prototype</li>
+          <li>Resource matching & capacity planning MVP</li>
+          <li>Delivery execution monitoring pilot</li>
+          <li>Account health scoring proof of concept</li>
+          <li>Delivery Agent architecture design</li>
+          <li>Competitive conversion assessment framework</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="fade-up" style="text-align:center; margin-top:2.5rem; color:var(--qlik-dark-blue); font-size:0.95rem; max-width:800px; margin-left:auto; margin-right:auto;">
+      AI capability improves incrementally with experience and prompt refinement. The sooner we implement the foundational architecture, the faster our compounding returns begin.
+    </p>
+  </div>
+</section>
+
+<!-- Interview Insights -->
+<section id="interviews">
+  <div class="section-title fade-up">Interview Insights</div>
+  <div class="section-subtitle fade-up">Key themes and perspectives from 6 interviews across the PS organization</div>
+
+  <div class="interview-grid" id="interview-grid">
+    <!-- Generated by JS -->
+  </div>
+</section>
+
+<!-- Closing Quote -->
+<section class="quote-banner">
+  <blockquote>
+    "The question is not whether AI will transform Professional Services &mdash; it's whether we lead the transformation or follow it."
+  </blockquote>
+  <cite>Let's start building today.</cite>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="brand">Qlik</div>
+  <p>AI Use Cases for Professional Services | Berkant &mdash; Managing Principal</p>
+  <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.5;">March 2026</p>
+</footer>
+
+<script>
+// ── Data ──
+const useCases = [
+  // CRAWL
+  { id: "C1", name: "SOW / Proposal / RFP Generation", tier: "crawl",
+    desc: "Generate SOWs, proposals, and RFP responses from templates and knowledge base. Highest-frequency pain point across all interviews.",
+    sources: ["Int 1", "Int 2", "Int 4", "Int 5", "Int 6"],
+    details: {
+      problem: "Delivery leads spend hours manually creating SOWs, proposals, and RFP responses, often duplicating content from past engagements.",
+      solution: "AI-powered document generator that draws from a curated knowledge base of past proposals, service catalogs, reference architectures, and templates to produce draft documents in minutes.",
+      dependencies: ["Knowledge base of reusable content", "Access to Claude Enterprise"],
+      impact: "Could save 5-10 hours per proposal, enabling faster response times and more consistent quality."
+    }
+  },
+  { id: "C2", name: "Customer Communication Templates", tier: "crawl",
+    desc: "Pre-structured emails for kickoffs, approvals, follow-ups. Auto-fill with customer and project context.",
+    sources: ["Int 1"],
+    details: {
+      problem: "Repetitive emails for approvals, kickoffs, and status updates require manual field completion even when using signature templates.",
+      solution: "Context-aware template engine that understands project data, calculates budget impacts, and generates properly formatted communications.",
+      dependencies: ["Email signature templates", "Project context access"],
+      impact: "Eliminates 15-30 minutes per communication, reducing administrative overhead for delivery leads."
+    }
+  },
+  { id: "C3", name: "Meeting Transcription & Summarization", tier: "crawl",
+    desc: "Capture, transcribe, and summarize meetings. Store in searchable format for future reference.",
+    sources: ["Int 3"],
+    details: {
+      problem: "Meeting content is lost or stored in fragmented local files. No centralized, searchable repository exists.",
+      solution: "Automated capture and transcription of Zoom/Teams meetings with LLM-powered summarization and storage in a RAG-ready format.",
+      dependencies: ["Zoom/Teams transcription capability", "Centralized storage"],
+      impact: "Foundational capability that feeds other use cases. Preserves institutional knowledge."
+    }
+  },
+  { id: "C4", name: "New Consultant Onboarding Accelerator", tier: "crawl",
+    desc: "Interactive onboarding guide covering PS offerings, acronyms, operating model. Compress ramp time by 30-50%.",
+    sources: ["Int 5"],
+    details: {
+      problem: "New joiners struggle for weeks/months searching SharePoint, MS Teams, and asking colleagues to understand PS services, tools, and processes.",
+      solution: "Personalized AI mentor that curates learning paths based on consultant background, answers questions in real time, and surfaces relevant past project artifacts.",
+      dependencies: ["PS documentation inventory", "Learning content curation"],
+      impact: "Compress ramp time by 30-50%, freeing manager time currently spent on manual guidance."
+    }
+  },
+  { id: "C5", name: "Multi-Language Presentation Generation", tier: "crawl",
+    desc: "Generate French, Spanish, German, Italian versions of PS presentations and training docs for EMEA customers.",
+    sources: ["Int 5"],
+    details: {
+      problem: "EMEA customers request materials in local languages. Consultants recreate entire presentations manually in French, Spanish, German, or Italian.",
+      solution: "AI-powered translation engine that preserves PowerPoint formatting, layout, and technical terminology while generating accurate localized versions.",
+      dependencies: ["Source presentations in English", "Language-specific terminology glossary"],
+      impact: "Reduces multi-hour manual translation work to minutes. Enables broader EMEA customer reach."
+    }
+  },
+  { id: "C6", name: "Success Story Documentation", tier: "crawl",
+    desc: "AI interviews consultants and generates standardized one-pager success stories for centralized repository.",
+    sources: ["Int 5"],
+    details: {
+      problem: "Success stories are inconsistently created, vary in quality, and aren't centralized. Not every engagement generates one.",
+      solution: "Structured AI-led interview process that captures key outcomes and auto-generates a branded one-pager PowerPoint for the centralized repository.",
+      dependencies: ["Success story template", "Consultant participation"],
+      impact: "Ensures every engagement >8 hours generates a success story, building a powerful library for sales enablement."
+    }
+  },
+  { id: "C7", name: "Calendar / Meeting Scheduling", tier: "crawl",
+    desc: "Access multiple calendars, suggest meeting times, allow customer self-selection with 48h notice.",
+    sources: ["Int 1", "Int 5"],
+    details: {
+      problem: "Consultants go back and forth with multiple meeting slot proposals, manually checking availability. Slots fill up during the process.",
+      solution: "AI scheduling tool that accesses required and optional attendees' calendars, generates availability overview, and lets customers self-select with minimum 48h notice.",
+      dependencies: ["Outlook calendar API access", "Customer-facing booking interface"],
+      impact: "Eliminates scheduling friction, saves 30+ minutes per meeting coordination."
+    }
+  },
+  { id: "C8", name: "Customer & Partner 360 Research", tier: "crawl",
+    desc: "Consolidate Salesforce history, LinkedIn, support tickets, contacts into pre-meeting research briefs in minutes.",
+    sources: ["Int 1", "Int 3", "Int 4"],
+    details: {
+      problem: "Researching opportunity potential takes 30 minutes to several hours across Salesforce, LinkedIn, and other disjointed systems.",
+      solution: "AI-generated customer profile synthesizing CRM history, licenses, support tickets, contact network activity, and internal employee connections into a single brief.",
+      dependencies: ["Salesforce API access", "LinkedIn data", "Internal CRM data"],
+      impact: "Reduces research from hours to minutes. Ensures consistent, comprehensive preparation for every engagement."
+    }
+  },
+  // WALK
+  { id: "W1", name: "Project Delivery Co-pilot", tier: "walk",
+    desc: "Chat interface trained on past projects, architecture patterns, delivery playbooks. Generate sprint plans and status reports.",
+    sources: ["Int 2"],
+    details: {
+      problem: "Consultants lack easy access to institutional knowledge about past projects, architectural decisions, and delivery best practices.",
+      solution: "RAG-powered chat interface trained on past project documentation, architectural patterns, delivery playbooks, and frameworks. Can answer questions, create sprint plans, and generate status reports.",
+      dependencies: ["RAG knowledge base", "Past project documentation index", "Architecture pattern library"],
+      impact: "Accelerates project startup, improves consistency, and preserves institutional knowledge."
+    }
+  },
+  { id: "W2", name: "Timecard & Activity Tracking", tier: "walk",
+    desc: "Auto-capture activities from Outlook/calendar, populate timecards, flag anomalies for DL approval.",
+    sources: ["Int 3", "Int 5"],
+    details: {
+      problem: "Consultants spend 30+ minutes weekly manually reviewing calendar and entering timecard data. Delivery leads manually review all timecards.",
+      solution: "AI captures daily/weekly activities from Outlook meetings, auto-populates timecard entries for consultant review, and auto-approves clean timecards while flagging anomalies for DL attention.",
+      dependencies: ["Outlook calendar API", "Salesforce timecard integration"],
+      impact: "Saves 50% of current manual timecard effort. DLs focus only on exceptions, not routine approvals."
+    }
+  },
+  { id: "W3", name: "AI-Assisted Technical Discovery", tier: "walk",
+    desc: "Listen to discovery calls, extract structured requirements, map to product capabilities, flag gaps.",
+    sources: ["Int 5"],
+    details: {
+      problem: "Discovery workshops produce unstructured notes. The process from discovery to proposal takes weeks and relies on individual consultant expertise.",
+      solution: "Agentic assistant that listens to or reads transcripts of discovery calls, extracts structured requirements, maps them to product capabilities, flags gaps, and auto-generates a preliminary solution architecture.",
+      dependencies: ["Call transcription", "Product capability mapping", "Architecture template library"],
+      impact: "Turns multi-week discovery-to-proposal cycle into rapid, high-quality output."
+    }
+  },
+  { id: "W4", name: "Documentation Gap Detection", tier: "walk",
+    desc: "Auto-create JIRA tickets from MS Teams gaps. Notify when PS assets (frameworks, runbooks) become stale.",
+    sources: ["Int 5"],
+    details: {
+      problem: "PS consultants find documentation gaps in help.qlik.com during conversations but gaps never get formally tracked. PS assets go stale without anyone noticing.",
+      solution: "Monitor MS Teams for mentions of documentation gaps and auto-create JIRA tickets. Separately, track PS asset freshness and notify leadership when materials need updating.",
+      dependencies: ["MS Teams integration", "JIRA API", "Asset metadata tracking"],
+      impact: "Closes the feedback loop on documentation quality. Prevents outdated assets from causing urgent rework."
+    }
+  },
+  // RUN
+  { id: "R1", name: "Forecast Generation & Gap Analysis", tier: "run",
+    desc: "Predictive forecasting with gap origin correlation. Requires integrated data from multiple systems.",
+    sources: ["Int 1", "Int 4"],
+    details: {
+      problem: "Forecast generation is the single most frequent 'stupid activity' for delivery leads. Gap analysis requires manual correlation across projects.",
+      solution: "AI-driven forecasting engine that integrates project data, effort tracking, and customer availability to generate accurate forecasts and pinpoint where gaps originate.",
+      dependencies: ["Integrated data platform", "Project management data", "Historical forecast data"],
+      impact: "Transforms forecasting from a manual, error-prone process to a predictive, data-driven one."
+    }
+  },
+  { id: "R2", name: "Resource Matching & Capacity Planning", tier: "run",
+    desc: "Match project needs to consultant skills/availability. Predict capacity shortfalls weeks in advance.",
+    sources: ["Int 2", "Int 5"],
+    details: {
+      problem: "Resource assignment is manual and relationship-driven. Capacity shortfalls are discovered reactively, causing scrambles.",
+      solution: "Agentic system that matches engagement requirements (industry, product, cloud, language, timezone) against skills matrix and Resource Planner in Salesforce. Predicts capacity shortfalls weeks in advance.",
+      dependencies: ["Salesforce skills matrix", "Resource Planner data", "Project backlog"],
+      impact: "Enables proactive capacity planning. Ensures optimal consultant-project fit."
+    }
+  },
+  { id: "R3", name: "Delivery Execution Monitoring", tier: "run",
+    desc: "Monitor project signals to predict delays, scope creep, bottlenecks. Proactive escalation prevention.",
+    sources: ["Int 2"],
+    details: {
+      problem: "Project issues are often discovered too late, leading to escalations that drain leadership time (e.g., NatWest escalation could have been prevented).",
+      solution: "AI monitoring system that ingests signals from project plans, utilization metrics, and milestone progress. Predicts delay risks, scope creep, and delivery bottlenecks before they escalate.",
+      dependencies: ["Project plan data", "Utilization metrics", "Milestone tracking system"],
+      impact: "Shifts from reactive firefighting to proactive risk prevention. Reduces costly escalations."
+    }
+  },
+  { id: "R4", name: "Account Health & Next Best Offer", tier: "run",
+    desc: "Churn risk scoring, credit analysis, partner matching, proactive service recommendations based on signals.",
+    sources: ["Int 2", "Int 4", "Int 6"],
+    details: {
+      problem: "Account health assessment is manual. Opportunities for upsell/cross-sell are missed because there's no systematic way to analyze customer signals.",
+      solution: "AI engine that assesses customer signals including platform usage, support tickets, work completed, and similar customer patterns. Recommends next services to offer and matches with appropriate partners.",
+      dependencies: ["Customer usage data", "Support ticket history", "Churn prediction models", "Partner capability database"],
+      impact: "Drives proactive customer engagement and revenue expansion. Demonstrates delivered value for renewals."
+    }
+  },
+  { id: "R5", name: "Delivery Agent (Agentic AI)", tier: "run",
+    desc: "Autonomous chat-based agent handling approvals, budget calculations, email generation, pipeline analysis.",
+    sources: ["Int 1", "Int 2", "Int 6"],
+    details: {
+      problem: "Delivery leads perform numerous context-switching tasks: approval requests, budget calculations, email drafting, pipeline reviews \u2014 each requiring data lookup across systems.",
+      solution: "Full agentic AI system that understands natural language queries, accesses project data, calculates budget impacts, generates formatted emails, and handles multi-step workflows autonomously with human-in-the-loop approval.",
+      dependencies: ["Integrated data platform", "RAG knowledge base", "System APIs (Salesforce, email, project tools)", "Robust security model"],
+      impact: "The ultimate vision \u2014 frees delivery leads to focus on high-value customer relationships and strategic decisions."
+    }
+  },
+  { id: "R6", name: "Competitive Product Conversion", tier: "run",
+    desc: "Semi-automated conversion from Informatica, Tableau, Cognos, Power BI to Qlik including discovery and assessment.",
+    sources: ["Int 5"],
+    details: {
+      problem: "Migrating customers from competitive products is manual, time-intensive, and often requires partner involvement.",
+      solution: "Semi-automated conversion application covering discovery, assessment, and execution phases for BI, ETL, and CDC products from Informatica, Tableau, Cognos, and Power BI to Qlik.",
+      dependencies: ["Competitive product schema mappings", "Conversion rule engines", "Assessment frameworks"],
+      impact: "Reduces dependencies on partners, increases services revenue, builds internal competitive awareness."
+    }
+  }
+];
+
+const interviews = [
+  {
+    title: "Interview 1",
+    role: "Delivery Lead \u2014 Document & Process Focus",
+    quote: "Forecast generation is the most frequent 'stupid activity' we do.",
+    useCases: ["C1", "C2", "C7", "C8", "R1", "R5"]
+  },
+  {
+    title: "Interview 2",
+    role: "Senior Leadership \u2014 Strategic Vision",
+    quote: "You can't really do AI unless you have a solid, accurate, clean, consistent data platform.",
+    useCases: ["C1", "W1", "R1", "R2", "R3", "R4", "R5"]
+  },
+  {
+    title: "Interview 3",
+    role: "Nordic Delivery Lead \u2014 Scale & Prioritization",
+    quote: "AI can do tasks, it can't do jobs. With 40-50 parallel projects, AI should highlight the 3-5 that need attention.",
+    useCases: ["C3", "C8", "W2"]
+  },
+  {
+    title: "Interview 4",
+    role: "Delivery Lead \u2014 Customer Engagement",
+    quote: "We need AI to check account health \u2014 churn risk, credit availability, packages, escalations \u2014 automatically.",
+    useCases: ["C1", "R1", "R4"]
+  },
+  {
+    title: "Interview 5",
+    role: "Advisory Services \u2014 13 Detailed Use Cases",
+    quote: "Presented a CRO dashboard to HSBC using Claude in 15 minutes \u2014 customer said 'Exactly what I want.'",
+    useCases: ["C4", "C5", "C6", "C7", "W2", "W3", "W4", "R2", "R6"]
+  },
+  {
+    title: "Interview 6",
+    role: "Dubai/MEA Regional \u2014 Maturity & Strategy",
+    quote: "Eat the elephant one piece at a time. Start with achievable use cases, build maturity for complex ones.",
+    useCases: ["C1", "R4", "R5"]
+  }
+];
+
+// ── Render Functions ──
+function renderUseCases() {
+  const grid = document.getElementById('use-case-grid');
+  grid.innerHTML = useCases.map(uc => `
+    <div class="use-case-card ${uc.tier} fade-up" data-tier="${uc.tier}" data-name="${uc.name.toLowerCase()}" onclick="toggleExpand(this)">
+      <div class="card-header">
+        <h4>${uc.name}</h4>
+        <span class="card-id">${uc.id}</span>
+      </div>
+      <div class="card-body">
+        <p>${uc.desc}</p>
+      </div>
+      <div class="card-meta">
+        <div class="card-sources">${uc.sources.map(s => `<span>${s}</span>`).join('')}</div>
+        <span class="expand-indicator">Click for details</span>
+      </div>
+      <div class="card-expand">
+        <h5>The Problem</h5>
+        <p>${uc.details.problem}</p>
+        <h5 style="margin-top:1rem;">The Solution</h5>
+        <p>${uc.details.solution}</p>
+        <h5 style="margin-top:1rem;">Dependencies</h5>
+        <ul>${uc.details.dependencies.map(d => `<li>${d}</li>`).join('')}</ul>
+        <h5>Expected Impact</h5>
+        <p>${uc.details.impact}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderInterviews() {
+  const grid = document.getElementById('interview-grid');
+  grid.innerHTML = interviews.map(iv => `
+    <div class="interview-card fade-up">
+      <h4>${iv.title}</h4>
+      <div class="role">${iv.role}</div>
+      <div class="key-quote">"${iv.quote}"</div>
+      <div class="use-cases-mentioned">
+        ${iv.useCases.map(ucId => {
+          const uc = useCases.find(u => u.id === ucId);
+          return uc ? `<span class="uc-tag ${uc.tier}">${ucId}</span>` : '';
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Interactions ──
+function filterCards(tier, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.use-case-card').forEach(card => {
+    if (tier === 'all' || card.dataset.tier === tier) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+function filterTo(tier) {
+  const section = document.getElementById('use-cases');
+  section.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    const btn = document.querySelector(`.filter-btn.${tier}-filter`);
+    if (btn) filterCards(tier, btn);
+  }, 500);
+}
+
+function searchCards(query) {
+  const q = query.toLowerCase();
+  document.querySelectorAll('.use-case-card').forEach(card => {
+    const name = card.dataset.name;
+    const desc = card.querySelector('.card-body p').textContent.toLowerCase();
+    if (name.includes(q) || desc.includes(q)) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  // Reset filter buttons
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if (!q) document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+}
+
+function toggleExpand(card) {
+  const expand = card.querySelector('.card-expand');
+  expand.classList.toggle('show');
+  const indicator = card.querySelector('.expand-indicator');
+  indicator.textContent = expand.classList.contains('show') ? 'Click to collapse' : 'Click for details';
+}
+
+function toggleLayer(layer) {
+  const wasActive = layer.classList.contains('active');
+  document.querySelectorAll('.pyramid-layer').forEach(l => l.classList.remove('active'));
+  if (!wasActive) layer.classList.add('active');
+}
+
+// ── Scroll Animations ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+function initObservers() {
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+}
+
+// ── Counter Animation ──
+function animateCounters() {
+  document.querySelectorAll('.stat-number').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const duration = 2000;
+    const start = performance.now();
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+// ── Nav Scroll ──
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+
+  // Update active nav link
+  const sections = ['framework', 'use-cases', 'hsbc', 'pyramid', 'roadmap', 'interviews'];
+  let current = '';
+  sections.forEach(id => {
+    const section = document.getElementById(id);
+    if (section && section.getBoundingClientRect().top < 200) {
+      current = id;
+    }
+  });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+  });
+});
+
+// ── Smooth scroll for nav links ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ── Init ──
+document.addEventListener('DOMContentLoaded', () => {
+  renderUseCases();
+  renderInterviews();
+  initObservers();
+  setTimeout(animateCounters, 500);
+});
+</script>
+</body>
+</html>
