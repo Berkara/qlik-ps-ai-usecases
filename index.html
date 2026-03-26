@@ -57,10 +57,11 @@ nav.scrolled { box-shadow: var(--shadow); }
 }
 
 .nav-brand {
-  font-size: 1.5rem; font-weight: 800;
-  color: var(--qlik-green); letter-spacing: -0.5px;
+  display: flex; align-items: center; gap: 0.5rem;
+  text-decoration: none;
 }
-.nav-brand span { color: var(--qlik-dark-blue); font-weight: 400; font-size: 0.9rem; margin-left: 0.5rem; }
+.nav-brand img { height: 28px; width: auto; display: block; }
+.nav-brand span { color: var(--qlik-dark-blue); font-weight: 400; font-size: 0.9rem; line-height: 1; }
 
 .nav-links { display: flex; gap: 0.25rem; }
 .nav-links a {
@@ -417,74 +418,193 @@ section {
 #roadmap { background: var(--qlik-light-grey); max-width: none; }
 #roadmap .inner { max-width: 1400px; margin: 0 auto; }
 
-.roadmap-timeline {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem; position: relative;
+.pillar-top-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; margin-bottom: 1.5rem;
+  align-items: start;
 }
-.roadmap-timeline::before {
-  content: ''; position: absolute;
-  top: 30px; left: 5%; right: 5%;
-  height: 4px; background: var(--qlik-accent-grey);
-  border-radius: 2px;
-  z-index: 0;
+.pillar-top-row .uc-card-grid {
+  grid-template-columns: 1fr;
 }
 
-.phase-card {
+.pillar-card {
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  position: relative; z-index: 1;
   transition: var(--transition);
 }
-.phase-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.pillar-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
 
-.phase-dot {
-  width: 20px; height: 20px;
-  border-radius: 50%; margin: 20px auto;
-  position: relative;
-}
-.phase-dot::after {
-  content: ''; position: absolute;
-  top: -4px; left: -4px;
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  border: 2px solid;
-  opacity: 0.3;
-}
-.phase-1 .phase-dot { background: var(--qlik-green); }
-.phase-1 .phase-dot::after { border-color: var(--qlik-green); }
-.phase-2 .phase-dot { background: var(--qlik-teal); }
-.phase-2 .phase-dot::after { border-color: var(--qlik-teal); }
-.phase-3 .phase-dot { background: var(--qlik-purple); }
-.phase-3 .phase-dot::after { border-color: var(--qlik-purple); }
-
-.phase-header {
+.pillar-header {
   padding: 1.25rem 1.5rem;
-  color: var(--white); text-align: center;
+  color: var(--white);
+  display: flex; align-items: center; gap: 0.75rem;
 }
-.phase-1 .phase-header { background: var(--qlik-green); }
-.phase-2 .phase-header { background: var(--qlik-teal); }
-.phase-3 .phase-header { background: var(--qlik-purple); }
+.pillar-header .pillar-icon { font-size: 1.4rem; }
+.pillar-header h4 { font-size: 1.1rem; }
+.pillar-1 .pillar-header { background: var(--qlik-green); }
+.pillar-2 .pillar-header { background: var(--qlik-teal); }
+.pillar-3 .pillar-header { background: var(--qlik-purple); }
 
-.phase-header h4 { font-size: 1.1rem; margin-bottom: 0.25rem; }
-.phase-header .days { font-size: 0.8rem; opacity: 0.8; }
-
-.phase-items { padding: 1.5rem; }
-.phase-items li {
-  list-style: none; padding: 0.5rem 0;
+.pillar-items { padding: 1.5rem; }
+.pillar-items li {
+  list-style: none; padding: 0.6rem 0;
   border-bottom: 1px solid var(--qlik-light-grey);
   font-size: 0.9rem;
   display: flex; align-items: center; gap: 0.5rem;
 }
-.phase-items li:last-child { border-bottom: none; }
-.phase-items li::before {
+.pillar-items li:last-child { border-bottom: none; }
+.pillar-items li::before {
   content: ''; width: 6px; height: 6px;
   border-radius: 50%; flex-shrink: 0;
 }
-.phase-1 .phase-items li::before { background: var(--qlik-green); }
-.phase-2 .phase-items li::before { background: var(--qlik-teal); }
-.phase-3 .phase-items li::before { background: var(--qlik-purple); }
+.pillar-1 .pillar-items li::before { background: var(--qlik-green); }
+.pillar-2 .pillar-items li::before { background: var(--qlik-teal); }
+.pillar-3 .pillar-items li::before { background: var(--qlik-purple); }
+
+/* Solutions section */
+.solutions-section {
+  margin-top: 1.5rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.solutions-header {
+  background: var(--qlik-purple);
+  color: var(--white);
+  padding: 1.25rem 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.solutions-header .pillar-icon { font-size: 1.4rem; }
+.solutions-header h4 { font-size: 1.1rem; }
+
+.tier-group { padding: 1rem 1.5rem; }
+.tier-group + .tier-group { border-top: 2px solid var(--qlik-light-grey); }
+
+.tier-group-label {
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.tier-group-label .tier-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+}
+.tier-group.crawl .tier-group-label { color: var(--qlik-green); }
+.tier-group.crawl .tier-dot { background: var(--qlik-green); }
+.tier-group.walk .tier-group-label { color: var(--qlik-teal); }
+.tier-group.walk .tier-dot { background: var(--qlik-teal); }
+.tier-group.run .tier-group-label { color: var(--qlik-purple); }
+.tier-group.run .tier-dot { background: var(--qlik-purple); }
+
+.uc-card-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+}
+
+.uc-card {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #edf0f4;
+  background: #fafbfc;
+  font-size: 0.85rem;
+  transition: var(--transition);
+}
+.uc-card:hover { background: var(--qlik-light-grey); border-color: #d0d5dd; }
+.uc-card .uc-name { flex: 1; }
+
+/* Status badges */
+.status-badge {
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  padding: 0.2rem 0.5rem; border-radius: 10px;
+  flex-shrink: 0; letter-spacing: 0.3px;
+  text-align: center; white-space: nowrap;
+}
+.status-badge.not-started { background: #f0f0f0; color: #9e9e9e; }
+.status-badge.in-progress { background: #fff3e0; color: #e65100; }
+.status-badge.testing { background: #e3f2fd; color: #1565c0; }
+.status-badge.finished { background: #e8f5e9; color: #2e7d32; }
+
+/* ── Timeline Gantt ── */
+#timeline { background: var(--white); max-width: none; }
+#timeline .inner { max-width: 1400px; margin: 0 auto; }
+
+.gantt { margin-top: 2rem; overflow-x: auto; }
+
+.gantt-header {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  border-bottom: 2px solid var(--qlik-dark-blue);
+  margin-bottom: 0.25rem;
+}
+.gantt-months {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.gantt-month {
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--qlik-dark-blue);
+  text-align: center;
+  padding: 0.5rem 0;
+  border-left: 1px solid var(--qlik-accent-grey);
+}
+
+.gantt-group-label {
+  grid-column: 1 / -1;
+  padding: 0.6rem 1rem;
+  font-weight: 700; font-size: 0.85rem;
+  color: var(--white);
+  margin-top: 0.5rem;
+  border-radius: 6px;
+}
+.gantt-group-label.g-green { background: var(--qlik-green); }
+.gantt-group-label.g-teal { background: var(--qlik-teal); }
+.gantt-group-label.g-purple { background: var(--qlik-purple); }
+
+.gantt-row {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  align-items: center;
+  background: var(--white);
+  border-bottom: 1px solid var(--qlik-light-grey);
+  transition: var(--transition);
+}
+.gantt-row:hover { background: #f0f4f8; }
+
+.gantt-task {
+  font-size: 0.8rem;
+  padding: 0.6rem 1rem;
+  color: var(--qlik-grey);
+  font-weight: 500;
+}
+
+.gantt-bar-area {
+  position: relative;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+.gantt-bar-area .gridline {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--qlik-accent-grey);
+  opacity: 0.3;
+}
+
+.gantt-bar {
+  position: absolute;
+  height: 20px;
+  border-radius: 4px;
+  opacity: 0.85;
+  transition: opacity var(--transition);
+}
+.gantt-bar:hover { opacity: 1; }
+.gantt-bar.green { background: var(--qlik-green); }
+.gantt-bar.teal { background: var(--qlik-teal); }
+.gantt-bar.purple { background: var(--qlik-purple); }
 
 /* ── Interview Insights ── */
 .interview-grid {
@@ -527,7 +647,8 @@ footer {
   color: rgba(255,255,255,0.7);
   text-align: center; padding: 3rem 2rem;
 }
-footer .brand { color: var(--qlik-green); font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem; }
+footer .brand { margin-bottom: 0.5rem; }
+footer .brand img { height: 28px; width: auto; }
 footer p { font-size: 0.85rem; }
 
 /* ── Animations ── */
@@ -556,7 +677,7 @@ footer p { font-size: 0.85rem; }
 <!-- Navigation -->
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="nav-brand">Qlik <span>Professional Services</span></div>
+    <div class="nav-brand"><img src="Branding and Templates/Qlik Logo/Full-Color Logo/Qlik Logo No Trademark 2 Color Positive RGB.svg" alt="Qlik Logo"> <span>Professional Services</span></div>
     <div class="nav-links">
       <a href="#framework">Framework</a>
       <a href="#use-cases">Use Cases</a>
@@ -738,67 +859,89 @@ footer p { font-size: 0.85rem; }
   </div>
 </section>
 
-<!-- 90-Day Roadmap -->
+<!-- Implementation Roadmap -->
 <section id="roadmap">
   <div class="inner">
-    <div class="section-title fade-up">90-Day Implementation Roadmap</div>
-    <div class="section-subtitle fade-up">The Compounding Returns of Immediate Action</div>
+    <div class="section-title fade-up">Implementation Roadmap</div>
+    <div class="section-subtitle fade-up">Three pillars working in parallel to deliver AI-powered transformation</div>
 
-    <div class="roadmap-timeline">
-      <div class="phase-card phase-1 fade-up">
-        <div class="phase-dot"></div>
-        <div class="phase-header">
-          <h4>Phase 1: Lay the Foundation</h4>
-          <div class="days">Days 1 &ndash; 30</div>
+    <div class="pillar-top-row">
+      <div class="solutions-section fade-up">
+        <div class="solutions-header" style="background: var(--qlik-green);">
+          <span class="pillar-icon">&#9881;</span>
+          <h4>Lay the Foundation</h4>
         </div>
-        <ul class="phase-items">
-          <li>Provision enterprise AI tools (Claude Enterprise)</li>
-          <li>Build Consulting Portfolio knowledge base (RAG) with service &amp; offering descriptions</li>
-          <li>Connect Qlik Sense to AI via Qlik Agentic MCP for structured data retrieval</li>
-          <li>Deploy SOW/proposal generator</li>
-          <li>Launch communication templates</li>
-          <li>Begin meeting transcription capture</li>
-        </ul>
+        <div class="tier-group foundation">
+          <div class="uc-card-grid">
+            <div class="uc-card"><span class="uc-name">Identify AI use cases</span> <span class="status-badge in-progress">In Progress</span></div>
+            <div class="uc-card"><span class="uc-name">Provision enterprise AI tools (Claude Enterprise)</span> <span class="status-badge in-progress">In Progress</span></div>
+            <div class="uc-card"><span class="uc-name">Build Consulting Portfolio RAG with service &amp; offering descriptions</span> <span class="status-badge in-progress">In Progress</span></div>
+            <div class="uc-card"><span class="uc-name">Build RAG knowledge base with past proposals</span> <span class="status-badge in-progress">In Progress</span></div>
+            <div class="uc-card"><span class="uc-name">Begin meeting transcription capture and store to RAG</span> <span class="status-badge not-started">Not Started</span></div>
+          </div>
+        </div>
       </div>
 
-      <div class="phase-card phase-2 fade-up">
-        <div class="phase-dot"></div>
-        <div class="phase-header">
-          <h4>Phase 2: Integrate & Scale</h4>
-          <div class="days">Days 31 &ndash; 60</div>
+      <div class="solutions-section fade-up">
+        <div class="solutions-header" style="background: var(--qlik-teal);">
+          <span class="pillar-icon">&#128279;</span>
+          <h4>Integrate &amp; Scale</h4>
         </div>
-        <ul class="phase-items">
-          <li>Build RAG knowledge base with past proposals</li>
-          <li>Launch Project Delivery Co-pilot</li>
-          <li>Timecard automation from Outlook</li>
-          <li>AI-assisted technical discovery pilot</li>
-          <li>Documentation gap detection</li>
-          <li>Begin data platform collaboration with Ops</li>
-        </ul>
-      </div>
-
-      <div class="phase-card phase-3 fade-up">
-        <div class="phase-dot"></div>
-        <div class="phase-header">
-          <h4>Phase 3: Predict & Transform</h4>
-          <div class="days">Days 61 &ndash; 90</div>
+        <div class="tier-group integrate">
+          <div class="uc-card-grid">
+            <div class="uc-card"><span class="uc-name">Enhance AI capability by connecting to enterprise apps (MCPs)</span> <span class="status-badge not-started">Not Started</span></div>
+            <div class="uc-card"><span class="uc-name">Data platform collaboration with Ops</span> <span class="status-badge not-started">Not Started</span></div>
+            <div class="uc-card"><span class="uc-name">System API integrations (Salesforce, Outlook, MS Teams, JIRA)</span> <span class="status-badge not-started">Not Started</span></div>
+          </div>
         </div>
-        <ul class="phase-items">
-          <li>Forecast generation prototype</li>
-          <li>Resource matching & capacity planning MVP</li>
-          <li>Delivery execution monitoring pilot</li>
-          <li>Account health scoring proof of concept</li>
-          <li>Delivery Agent architecture design</li>
-          <li>Competitive conversion assessment framework</li>
-        </ul>
       </div>
     </div>
 
-    <p class="fade-up" style="text-align:center; margin-top:2.5rem; color:var(--qlik-dark-blue); font-size:0.95rem; max-width:800px; margin-left:auto; margin-right:auto;">
-      AI capability improves incrementally with experience and prompt refinement. The sooner we implement the foundational architecture, the faster our compounding returns begin.
-    </p>
+    <div class="solutions-section fade-up">
+      <div class="solutions-header">
+        <span class="pillar-icon">&#128640;</span>
+        <h4>Solutions &amp; Transform</h4>
+      </div>
+
+      <div class="tier-group crawl">
+        <div class="tier-group-label"><span class="tier-dot"></span> Crawl &mdash; Quick Wins</div>
+        <div class="uc-card-grid">
+          <div class="uc-card"><span class="uc-name">SOW / Proposal / RFP Generation</span> <span class="status-badge in-progress">In Progress</span></div>
+          <div class="uc-card"><span class="uc-name">Customer Communication Templates</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Meeting Transcription &amp; Summarization</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Multi-Language Presentation Generation</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Success Story Documentation</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Customer &amp; Partner 360 Research</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">New Consultant Onboarding Accelerator</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Calendar / Meeting Scheduling</span> <span class="status-badge not-started">Not Started</span></div>
+        </div>
+      </div>
+
+      <div class="tier-group walk">
+        <div class="tier-group-label"><span class="tier-dot"></span> Walk &mdash; Integration Required</div>
+        <div class="uc-card-grid">
+          <div class="uc-card"><span class="uc-name">Project Delivery Co-pilot</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Timecard &amp; Activity Tracking</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">AI-Assisted Technical Discovery</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Documentation Gap Detection</span> <span class="status-badge not-started">Not Started</span></div>
+        </div>
+      </div>
+
+      <div class="tier-group run">
+        <div class="tier-group-label"><span class="tier-dot"></span> Run &mdash; Advanced Capabilities</div>
+        <div class="uc-card-grid">
+          <div class="uc-card"><span class="uc-name">Forecast Generation &amp; Gap Analysis</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Resource Matching &amp; Capacity Planning</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Delivery Execution Monitoring</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Account Health &amp; Next Best Offer</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Delivery Agent (Agentic AI)</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Competitive Product Conversion</span> <span class="status-badge not-started">Not Started</span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
 
 <!-- Interview Insights -->
 <section id="interviews">
@@ -820,7 +963,7 @@ footer p { font-size: 0.85rem; }
 
 <!-- Footer -->
 <footer>
-  <div class="brand">Qlik</div>
+  <div class="brand"><img src="Branding and Templates/Qlik Logo/1 Color White Logo/Qlik Logo No Trademark Negative.svg" alt="Qlik Logo"></div>
   <p>AI Use Cases for Professional Services | Berkant &mdash; Managing Principal</p>
   <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.5;">March 2026</p>
 </footer>
