@@ -755,8 +755,8 @@ footer p { font-size: 0.85rem; }
 
   <div class="filter-bar fade-up">
     <button class="filter-btn active" data-filter="all" onclick="filterCards('all', this)">All (18)</button>
-    <button class="filter-btn crawl-filter" data-filter="crawl" onclick="filterCards('crawl', this)">Crawl (8)</button>
-    <button class="filter-btn walk-filter" data-filter="walk" onclick="filterCards('walk', this)">Walk (4)</button>
+    <button class="filter-btn crawl-filter" data-filter="crawl" onclick="filterCards('crawl', this)">Crawl (6)</button>
+    <button class="filter-btn walk-filter" data-filter="walk" onclick="filterCards('walk', this)">Walk (6)</button>
     <button class="filter-btn run-filter" data-filter="run" onclick="filterCards('run', this)">Run (6)</button>
     <input type="text" class="search-input" placeholder="Search use cases..." oninput="searchCards(this.value)">
   </div>
@@ -911,15 +911,15 @@ footer p { font-size: 0.85rem; }
           <div class="uc-card"><span class="uc-name">Meeting Transcription &amp; Summarization</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">Multi-Language Presentation Generation</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">Success Story Documentation</span> <span class="status-badge not-started">Not Started</span></div>
-          <div class="uc-card"><span class="uc-name">Customer &amp; Partner 360 Research</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">New Consultant Onboarding Accelerator</span> <span class="status-badge not-started">Not Started</span></div>
-          <div class="uc-card"><span class="uc-name">Calendar / Meeting Scheduling</span> <span class="status-badge not-started">Not Started</span></div>
         </div>
       </div>
 
       <div class="tier-group walk">
         <div class="tier-group-label"><span class="tier-dot"></span> Walk &mdash; Integration Required</div>
         <div class="uc-card-grid">
+          <div class="uc-card"><span class="uc-name">Calendar / Meeting Scheduling</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Customer &amp; Partner 360 Research</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">Project Delivery Co-pilot</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">Timecard &amp; Activity Tracking</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">AI-Assisted Technical Discovery</span> <span class="status-badge not-started">Not Started</span></div>
@@ -1032,7 +1032,7 @@ const useCases = [
       impact: "Ensures every engagement >8 hours generates a success story, building a powerful library for sales enablement."
     }
   },
-  { id: "C7", name: "Calendar / Meeting Scheduling", tier: "crawl",
+  { id: "C7", name: "Calendar / Meeting Scheduling", tier: "walk",
     desc: "Access multiple calendars, suggest meeting times, allow customer self-selection with 48h notice.",
     sources: ["Int 1", "Int 5"],
     details: {
@@ -1042,7 +1042,7 @@ const useCases = [
       impact: "Eliminates scheduling friction, saves 30+ minutes per meeting coordination."
     }
   },
-  { id: "C8", name: "Customer & Partner 360 Research", tier: "crawl",
+  { id: "C8", name: "Customer & Partner 360 Research", tier: "walk",
     desc: "Consolidate Salesforce history, LinkedIn, support tickets, contacts into pre-meeting research briefs in minutes.",
     sources: ["Int 1", "Int 3", "Int 4"],
     details: {
