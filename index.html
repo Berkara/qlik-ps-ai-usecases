@@ -12,7 +12,7 @@
   --qlik-dark-blue: #19416C;
   --qlik-teal: #006580;
   --qlik-cyan: #10CFC9;
-  --qlik-purple: #93579C;
+  --qlik-purple: #E57200;
   --qlik-grey: #545659;
   --qlik-light-grey: #F6F7F8;
   --qlik-accent-grey: #A9B3B6;
@@ -183,7 +183,7 @@ section {
 }
 .crawl .tier-badge { background: rgba(0,152,69,0.1); color: var(--qlik-green); }
 .walk .tier-badge { background: rgba(0,101,128,0.1); color: var(--qlik-teal); }
-.run .tier-badge { background: rgba(147,87,156,0.1); color: var(--qlik-purple); }
+.run .tier-badge { background: rgba(229,114,0,0.1); color: var(--qlik-purple); }
 
 .framework-card h3 { font-size: 1.3rem; color: var(--qlik-dark-blue); margin-bottom: 0.5rem; }
 .framework-card .count { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
@@ -276,7 +276,7 @@ section {
 }
 .crawl .card-id { background: rgba(0,152,69,0.1); color: var(--qlik-green); }
 .walk .card-id { background: rgba(0,101,128,0.1); color: var(--qlik-teal); }
-.run .card-id { background: rgba(147,87,156,0.1); color: var(--qlik-purple); }
+.run .card-id { background: rgba(229,114,0,0.1); color: var(--qlik-purple); }
 
 .card-body {
   padding: 0 1.5rem 1.25rem;
@@ -639,7 +639,7 @@ section {
 }
 .uc-tag.crawl { background: rgba(0,152,69,0.1); color: var(--qlik-green); }
 .uc-tag.walk { background: rgba(0,101,128,0.1); color: var(--qlik-teal); }
-.uc-tag.run { background: rgba(147,87,156,0.1); color: var(--qlik-purple); }
+.uc-tag.run { background: rgba(229,114,0,0.1); color: var(--qlik-purple); }
 
 /* ── Footer ── */
 footer {
@@ -696,7 +696,7 @@ footer p { font-size: 0.85rem; }
     <p class="subtitle">From fragmented exploration to enterprise AI enablement. A strategic blueprint for accelerating delivery, empowering consultants, and automating operational workflows.</p>
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-number" data-target="18">0</div>
+        <div class="stat-number" data-target="25">0</div>
         <div class="stat-label">Use Cases</div>
       </div>
       <div class="stat">
@@ -728,13 +728,13 @@ footer p { font-size: 0.85rem; }
     <div class="framework-cards">
       <div class="framework-card crawl fade-up" onclick="filterTo('crawl')">
         <span class="tier-badge">Crawl</span>
-        <div class="count">6</div>
+        <div class="count">8</div>
         <h3>Quick Wins</h3>
         <p>Independent of data platform. No major system integrations needed. Can start immediately with existing tools and content.</p>
       </div>
       <div class="framework-card walk fade-up" onclick="filterTo('walk')">
         <span class="tier-badge">Walk</span>
-        <div class="count">6</div>
+        <div class="count">11</div>
         <h3>Building Integrations</h3>
         <p>Basic system integrations required. Moderate complexity. Connects to Salesforce, Outlook, JIRA, and project management tools.</p>
       </div>
@@ -751,12 +751,12 @@ footer p { font-size: 0.85rem; }
 <!-- Use Case Explorer -->
 <section id="use-cases">
   <div class="section-title fade-up">Use Case Explorer</div>
-  <div class="section-subtitle fade-up">18 consolidated use cases from 6 interviews across the PS organization</div>
+  <div class="section-subtitle fade-up">25 use cases from 6 interviews and AI-driven gap analysis across the PS organization</div>
 
   <div class="filter-bar fade-up">
-    <button class="filter-btn active" data-filter="all" onclick="filterCards('all', this)">All (18)</button>
-    <button class="filter-btn crawl-filter" data-filter="crawl" onclick="filterCards('crawl', this)">Crawl (6)</button>
-    <button class="filter-btn walk-filter" data-filter="walk" onclick="filterCards('walk', this)">Walk (6)</button>
+    <button class="filter-btn active" data-filter="all" onclick="filterCards('all', this)">All (25)</button>
+    <button class="filter-btn crawl-filter" data-filter="crawl" onclick="filterCards('crawl', this)">Crawl (8)</button>
+    <button class="filter-btn walk-filter" data-filter="walk" onclick="filterCards('walk', this)">Walk (11)</button>
     <button class="filter-btn run-filter" data-filter="run" onclick="filterCards('run', this)">Run (6)</button>
     <input type="text" class="search-input" placeholder="Search use cases..." oninput="searchCards(this.value)">
   </div>
@@ -913,6 +913,8 @@ footer p { font-size: 0.85rem; }
           <div class="uc-card"><span class="uc-name">Multi-Language Presentation Generation</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">Success Story Documentation</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">New Consultant Onboarding Accelerator</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Engagement Retrospective &amp; Lessons Learned</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Consultant Skills Development &amp; Certification Tracker</span> <span class="status-badge not-started">Not Started</span></div>
         </div>
       </div>
 
@@ -925,6 +927,11 @@ footer p { font-size: 0.85rem; }
           <div class="uc-card"><span class="uc-name">Timecard &amp; Activity Tracking</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">AI-Assisted Technical Discovery</span> <span class="status-badge not-started">Not Started</span></div>
           <div class="uc-card"><span class="uc-name">Documentation Gap Detection</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Post-Engagement Value Realization Reporting</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Qlik App Code Review &amp; Quality Assurance</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Effort Estimation Intelligence</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Intelligent Log &amp; Error Analysis</span> <span class="status-badge not-started">Not Started</span></div>
+          <div class="uc-card"><span class="uc-name">Customer Self-Service Requirements Intake</span> <span class="status-badge not-started">Not Started</span></div>
         </div>
       </div>
 
@@ -1033,7 +1040,27 @@ const useCases = [
       impact: "Ensures every engagement >8 hours generates a success story, building a powerful library for sales enablement."
     }
   },
-  { id: "C7", name: "Calendar / Meeting Scheduling", tier: "walk",
+  { id: "C7", name: "Engagement Retrospective & Lessons Learned", tier: "crawl",
+    desc: "AI-facilitated post-project retrospective. Generates tagged lessons-learned docs indexed into a searchable knowledge base.",
+    sources: ["AI"],
+    details: {
+      problem: "Project retrospectives rarely happen due to time pressure. When they do, learnings are not systematically captured or made discoverable. Mistakes get repeated across teams.",
+      solution: "AI-facilitated retrospective that interviews the delivery lead and consultants, cross-references actuals vs plan, scope changes, and escalations, then generates a standardized lessons-learned document. Learnings are tagged and indexed so future teams can query: 'What went wrong on similar migrations?'",
+      dependencies: ["Project data access", "Structured interview templates", "Searchable knowledge base"],
+      impact: "Builds organizational memory. Prevents repeated mistakes and accelerates onboarding of new team members to similar engagements."
+    }
+  },
+  { id: "C8", name: "Consultant Skills Development & Certification Tracker", tier: "crawl",
+    desc: "AI-powered skills gap analysis mapping certifications, project experience, and training against product portfolio and pipeline demand.",
+    sources: ["AI"],
+    details: {
+      problem: "In a rapidly evolving product portfolio (Qlik Sense, Qlik Cloud, Talend, AutoML), keeping consultant skills current is critical. Skill gaps are discovered reactively when projects can't be staffed.",
+      solution: "AI system that maps current certifications, project experience, and training against evolving Qlik product portfolio and market demand. Generates personalized learning paths and flags team-level skill gaps to management.",
+      dependencies: ["Salesforce skills matrix", "Training records", "Pipeline data"],
+      impact: "Enables proactive skills development. Ensures the right capabilities are available before pipeline demands them."
+    }
+  },
+  { id: "C9", name: "Calendar / Meeting Scheduling", tier: "walk",
     desc: "Access multiple calendars, suggest meeting times, allow customer self-selection with 48h notice.",
     sources: ["Int 1", "Int 5"],
     details: {
@@ -1043,7 +1070,7 @@ const useCases = [
       impact: "Eliminates scheduling friction, saves 30+ minutes per meeting coordination."
     }
   },
-  { id: "C8", name: "Customer & Partner 360 Research", tier: "walk",
+  { id: "C10", name: "Customer & Partner 360 Research", tier: "walk",
     desc: "Consolidate Salesforce history, LinkedIn, support tickets, contacts into pre-meeting research briefs in minutes.",
     sources: ["Int 1", "Int 3", "Int 4"],
     details: {
@@ -1092,6 +1119,56 @@ const useCases = [
       solution: "Monitor MS Teams for mentions of documentation gaps and auto-create JIRA tickets. Separately, track PS asset freshness and notify leadership when materials need updating.",
       dependencies: ["MS Teams integration", "JIRA API", "Asset metadata tracking"],
       impact: "Closes the feedback loop on documentation quality. Prevents outdated assets from causing urgent rework."
+    }
+  },
+  { id: "W5", name: "Post-Engagement Value Realization Reporting", tier: "walk",
+    desc: "Auto-generate value reports at engagement close and 30/60/90 days. Quantifies delivered ROI from project artifacts and usage data.",
+    sources: ["AI"],
+    details: {
+      problem: "There is no systematic way to prove engagements delivered promised outcomes. Value realization is anecdotal, making renewals and expansion harder to justify.",
+      solution: "Automated reporting that pulls from project artifacts, time logs, success criteria, and customer usage data to produce branded value realization reports at engagement close and at 30/60/90-day intervals.",
+      dependencies: ["Project data access", "Customer usage metrics", "Report templates"],
+      impact: "Directly supports renewals and expansion by quantifying delivered value. Closes the post-engagement gap."
+    }
+  },
+  { id: "W6", name: "Qlik App Code Review & Quality Assurance", tier: "walk",
+    desc: "AI review of Qlik load scripts, expressions, and data models against best practice frameworks with structured quality reports.",
+    sources: ["AI"],
+    details: {
+      problem: "Qlik app quality depends entirely on individual consultant expertise. No automated quality gate exists for the core technical deliverable.",
+      solution: "AI-powered review of Qlik Sense load scripts, expressions, data models, and architecture against PS best practice frameworks. Generates structured quality reports covering naming conventions, star-schema conformance, expression optimization, security rules, and reload performance.",
+      dependencies: ["QRS API or QVF file access", "Best practice rule library"],
+      impact: "Catches issues before customer delivery, reduces rework, and standardizes quality across all consultants."
+    }
+  },
+  { id: "W7", name: "Effort Estimation Intelligence", tier: "walk",
+    desc: "AI-driven effort estimation using historical actuals with confidence ranges and analogous past project references.",
+    sources: ["AI"],
+    details: {
+      problem: "Effort estimation relies on individual judgment. Poor estimation leads to overruns, scope creep, and write-offs. No systematic use of historical actuals.",
+      solution: "AI estimation engine that analyzes historical project data \u2014 actual hours vs estimated, engagement type, customer size, complexity factors \u2014 and returns confidence-ranged estimates (optimistic/likely/pessimistic) with analogous past projects as references.",
+      dependencies: ["Historical project data", "Scope classification taxonomy", "Actuals tracking"],
+      impact: "Reduces estimation error and protects margins. Flags scope elements that historically cause underestimation."
+    }
+  },
+  { id: "W8", name: "Intelligent Log & Error Analysis", tier: "walk",
+    desc: "AI analysis of Qlik server and reload logs to diagnose root causes, suggest remediation, and identify patterns.",
+    sources: ["AI"],
+    details: {
+      problem: "Consultants spend significant time on troubleshooting during implementation and support. Log analysis depends entirely on individual expertise and tribal knowledge.",
+      solution: "AI-powered analysis of Qlik Sense server logs, reload logs, and error outputs. Diagnoses root causes, suggests remediation steps, and identifies patterns across customer environments by referencing similar past issues.",
+      dependencies: ["Log file access", "Historical issue resolution database"],
+      impact: "Dramatically reduces troubleshooting time. Makes diagnostic expertise available to all consultants regardless of experience level."
+    }
+  },
+  { id: "W9", name: "Customer Self-Service Requirements Intake", tier: "walk",
+    desc: "Customer-facing AI assistant for pre-engagement requirements documentation, producing standardized briefs linked to Salesforce.",
+    sources: ["AI"],
+    details: {
+      problem: "Requirements gathering requires multiple discovery sessions. Customers arrive unprepared, extending the pre-sales cycle. No customer-facing AI capability exists.",
+      solution: "Customer-facing AI assistant (chatbot or guided form) that helps customers self-document their requirements, data landscape, current tools, user base, and timeline constraints before engaging PS. Produces a standardized requirements brief automatically linked to a Salesforce opportunity.",
+      dependencies: ["Customer-facing web interface", "Salesforce API", "Requirements taxonomy"],
+      impact: "Reduces pre-sales cycle by shifting information gathering left. First customer-facing AI capability \u2014 a significant differentiation."
     }
   },
   // RUN
@@ -1162,7 +1239,7 @@ const interviews = [
     title: "Interview 1",
     role: "Delivery Lead \u2014 Document & Process Focus",
     quote: "Forecast generation is the most frequent 'stupid activity' we do.",
-    useCases: ["C1", "C2", "C7", "C8", "R1", "R5"]
+    useCases: ["C1", "C2", "C9", "C10", "R1", "R5"]
   },
   {
     title: "Interview 2",
@@ -1174,7 +1251,7 @@ const interviews = [
     title: "Interview 3",
     role: "Nordic Delivery Lead \u2014 Scale & Prioritization",
     quote: "AI can do tasks, it can't do jobs. With 40-50 parallel projects, AI should highlight the 3-5 that need attention.",
-    useCases: ["C3", "C8", "W2"]
+    useCases: ["C3", "C10", "W2"]
   },
   {
     title: "Interview 4",
@@ -1186,7 +1263,7 @@ const interviews = [
     title: "Interview 5",
     role: "Advisory Services \u2014 13 Detailed Use Cases",
     quote: "Presented a CRO dashboard to HSBC using Claude in 15 minutes \u2014 customer said 'Exactly what I want.'",
-    useCases: ["C4", "C5", "C6", "C7", "W2", "W3", "W4", "R2", "R6"]
+    useCases: ["C4", "C5", "C6", "C9", "W2", "W3", "W4", "R2", "R6"]
   },
   {
     title: "Interview 6",
